@@ -1,0 +1,13 @@
+enum QUEUES {
+  LIVE_UPDATE_QUEUE = 'LIVE_UPDATE_QUEUE',
+}
+
+enum JOBS {
+  LIVE_UPDATE_PING = 'LIVE_UPDATE_PING',
+}
+
+enum CRONS {
+  LIVE_UPDATE = '* * * * *',
+}
+
+export { QUEUES, JOBS, CRONS };

@@ -1,0 +1,27 @@
+ version: "3.9"
+
+ services:
+   nestjs-app:
+     image: node:18-alpine
+     command: sh -c "yarn start:dev"
+     ports:
+       - 3000:3000
+     working_dir: /app
+     volumes:
+       - ./:/app
+     depends_on:
+       - db
+       - redis
+       - mock-api
+   db:
+     image: postgres:14.5-alpine
+     environment:
+       POSTGRES_DB: "${DB_NAME}"
+       POSTGRES_USER: "${DB_USER}"
+       POSTGRES_PASSWORD: "${DB_PASSWORD}"
+   redis:
+     image: redis:7.0.4-alpine
+   mock-api:
+     image: wiremock/wiremock
+     volumes:
+       - ./docker/mock-api:/home/wiremock
